@@ -27,15 +27,3 @@ def adiciona_em_ordem(pais,distancia,lista):
         c+=1
     
     return nova_lista
-
-pais = 'siria'
-distancia = 5919
-lista = [
-    ['libia', 3678],
-    ['franca', 3998],
-    ['egito', 5008],
-    ['india', 9919],
-    ['japao', 13836]
-]
-
-print(adiciona_em_ordem(pais,distancia,lista))
