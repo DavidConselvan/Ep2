@@ -3912,19 +3912,34 @@ dados_normalizados = normaliza(DADOS)
 pais_aleatorio = sorteia_pais(dados_normalizados)
 tent_ant = '\nDistâncias:\n'
 tentativas = 0
+dicas = 'Dicas:\n'
+
 while tentativas<=20:
-    
-    chute_pais = str(input('\nChute um país: \n'))
-    lat1 = float(dados_normalizados[chute_pais]['geo']['latitude'])
-    long1 = float(dados_normalizados[chute_pais]['geo']['longitude'])
-    lat2 = float(dados_normalizados[pais_aleatorio]['geo']['latitude'])
-    long2 = float(dados_normalizados[pais_aleatorio]['geo']['latitude'])
-    dist_paises = haversine(raio_terra,lat1,long1,lat2,long2)
-    if dist_paises == 0:
-        print('Parabéns você acertou!')
+    palpites = str(input('\nQual o seu palpite? \n'))
+
+    if palpites != 'dica' and palpites!= 'desisto' and palpites!='ínventario':
+        lat1 = float(dados_normalizados[palpites]['geo']['latitude'])
+        long1 = float(dados_normalizados[palpites]['geo']['longitude'])
+        lat2 = float(dados_normalizados[pais_aleatorio]['geo']['latitude'])
+        long2 = float(dados_normalizados[pais_aleatorio]['geo']['latitude'])
+        dist_paises = haversine(raio_terra,lat1,long1,lat2,long2)
+        if dist_paises == 0:
+            print('Parabéns você acertou!')
+            break
+        else:
+            tent_ant += '{} ---> {:.2f} km \n'.format(palpites,dist_paises)
+            print (tent_ant)
+            tentativas+=1
+            print(dicas)
+            print('Você tem {} tentativas\n'.format(20-tentativas))
+
+    elif palpites == 'desisto':
         break
-    else:
-        tent_ant += '{} ---> {:.2f} km \n'.format(chute_pais,dist_paises)
-        print (tent_ant)
-        tentativas+=1
-    
+
+    elif palpites == 'dica':
+        print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 4. População        - custa 5 tentativas\n 5. Continente       - custa 7 tentativas')
+        opcao = str(input('Escolha sua opção [0|1|2|3|4|5]'))
+
+
+
+
