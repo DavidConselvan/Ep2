@@ -3878,7 +3878,8 @@ def normaliza(dicionario):
     new_dic = {}
     for cont,info in dicionario.items():
         for chaves, dados in info.items():
-            new_dic[chaves] = dados        
+            new_dic[chaves] = dados
+            dados['continente'] = cont       
     return new_dic
 
 def sorteia_pais(dicionario):
@@ -3959,6 +3960,7 @@ while tentativas<=20:
             area_pais = dados_normalizados[pais_aleatorio]['area']
             print('\nA área do país é de {} km2'.format(area_pais))
             tentativas+=3
+
         
         
 
