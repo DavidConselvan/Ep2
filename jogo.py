@@ -3955,8 +3955,12 @@ while tentativas<=20:
             tentativas+=3
             print('\nUma das letras da capital é {}'.format(letra_sorteada))
         
+        if opcao == '3':
+            area_pais = dados_normalizados[pais_aleatorio]['area']
+            print('\nA área do país é de {} km2'.format(area_pais))
+            tentativas+=3
         
-            
+        
 
             
 
