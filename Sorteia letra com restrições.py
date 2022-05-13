@@ -20,9 +20,7 @@ def sorteia_letra(string,lista):
 
     if len(lista_sorteavel) == 0:
         return ''
+    else:
+        return random.choice(lista_sorteavel)
 
-    sorteio = random.choice(lista_sorteavel)
-
-    return sorteio
-
-print(sorteia_letra('Andorra a-Velha',['a', 'r']))
+print(sorteia_letra('Andorra a-Velha',['a','r']))
