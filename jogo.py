@@ -3949,7 +3949,13 @@ while tentativas<=20:
             tentativas+=4
             print('\nUma das cores da bandeira é {}'.format(random.choice(cores)))
         
-       
+        if opcao == '2':
+            letra_sorteada = sorteia_letra(dados_normalizados[pais_aleatorio]['capital'],lista_r)
+            lista_r.append(letra_sorteada)
+            tentativas+=3
+            print('\nUma das letras da capital é {}'.format(letra_sorteada))
+        
+        
             
 
             
