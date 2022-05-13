@@ -3913,7 +3913,8 @@ pais_aleatorio = sorteia_pais(dados_normalizados)
 tent_ant = '\nDistâncias:\n'
 tentativas = 0
 dicas = 'Dicas:\n'
-
+cores = []
+lista_r = []
 while tentativas<=20:
     palpites = str(input('\nQual o seu palpite? \n'))
 
@@ -3938,7 +3939,24 @@ while tentativas<=20:
 
     elif palpites == 'dica':
         print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 4. População        - custa 5 tentativas\n 5. Continente       - custa 7 tentativas')
-        opcao = str(input('Escolha sua opção [0|1|2|3|4|5]'))
+        opcao = str(input('\nEscolha sua opção [0|1|2|3|4|5]: '))
+
+        if opcao == '1':
+            for cor,codigo in dados_normalizados[pais_aleatorio]['bandeira'].items():
+                if codigo>0:
+                    if cor!= 'outras':
+                        cores.append(cor)
+            tentativas+=4
+            print('\nUma das cores da bandeira é {}'.format(random.choice(cores)))
+        
+       
+            
+
+            
+
+
+
+
 
 
 
