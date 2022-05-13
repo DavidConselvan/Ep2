@@ -1,10 +1,11 @@
 #importa bibliotecas
-from random import *
+from dis import dis
+import random
 from math import *
 
 
 #raio da terra
-EARTH_RADIUS = 6371
+raio_terra = 6371
 
 #dados países por continentes
 DADOS = {
@@ -3907,8 +3908,23 @@ def sorteia_letra(string,lista):
 #Dados por país-normalizados
 dados_normalizados = normaliza(DADOS)
 
-chute_pais = str(input('Chute um país'))
+
 pais_aleatorio = sorteia_pais(dados_normalizados)
-
-
-
+tent_ant = '\nDistâncias:\n'
+tentativas = 0
+while tentativas<=20:
+    
+    chute_pais = str(input('\nChute um país: \n'))
+    lat1 = float(dados_normalizados[chute_pais]['geo']['latitude'])
+    long1 = float(dados_normalizados[chute_pais]['geo']['longitude'])
+    lat2 = float(dados_normalizados[pais_aleatorio]['geo']['latitude'])
+    long2 = float(dados_normalizados[pais_aleatorio]['geo']['latitude'])
+    dist_paises = haversine(raio_terra,lat1,long1,lat2,long2)
+    if dist_paises == 0:
+        print('Parabéns você acertou!')
+        break
+    else:
+        tent_ant += '{} ---> {:.2f} km \n'.format(chute_pais,dist_paises)
+        print (tent_ant)
+        tentativas+=1
+    
