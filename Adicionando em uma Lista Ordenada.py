@@ -1,29 +1,20 @@
-def adiciona_em_ordem(pais,distancia,lista):
+def adiciona_em_ordem(pais,dist,lista):
+    novo_pais = [pais,dist]
     nova_lista = []
 
-    if len(lista) == 0:
-        nova_lista.append([pais, distancia])
-
-    c=0
-    while c < len(lista):
-        
-        if lista[c][1] < distancia:
-            nova_lista.append(lista[c])
-
-        if lista[c][1] >= distancia:
-            if pais == lista[c][0]:
-                nova_lista.append(lista[c])
-                c+=1
-            else:
-                nova_lista.append([pais, distancia])
-            break  
-        
-        c+=1
-        
-    print(c)
-
-    while c < len(lista):
-        nova_lista.append(lista[c])
-        c+=1
+    if pais in lista:
+        return lista
     
+    i = 0
+    j= 0
+
+    while i<len(lista):
+        if novo_pais[1]< lista[i][1] and j == 0:
+            nova_lista.append(novo_pais)
+            j= 1
+        else:
+            nova_lista.append(lista[i])
+            i+=1
+    if j == 0:
+        nova_lista.append(novo_pais)
     return nova_lista
