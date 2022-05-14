@@ -3923,7 +3923,7 @@ while tentativas<=20:
         lat1 = float(dados_normalizados[palpites]['geo']['latitude'])
         long1 = float(dados_normalizados[palpites]['geo']['longitude'])
         lat2 = float(dados_normalizados[pais_aleatorio]['geo']['latitude'])
-        long2 = float(dados_normalizados[pais_aleatorio]['geo']['latitude'])
+        long2 = float(dados_normalizados[pais_aleatorio]['geo']['longitude'])
         dist_paises = haversine(raio_terra,lat1,long1,lat2,long2)
         if dist_paises == 0:
             print('Parabéns você acertou!')
@@ -3933,10 +3933,16 @@ while tentativas<=20:
             print (tent_ant)
             tentativas+=1
             print(dicas)
-            print('Você tem {} tentativas\n'.format(20-tentativas))
+            print('\nVocê tem {} tentativas\n'.format(20-tentativas))
 
     elif palpites == 'desisto':
-        break
+        pais_aleatorio = sorteia_pais(dados_normalizados)
+        tentativas = 0
+        tent_ant = '\nDistâncias:\n'
+        dicas = 'Dicas:\n'
+        cores = []
+        lista_r = []
+        print('\nMais sorte da próxima vez')
 
     elif palpites == 'dica':
         print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 4. População        - custa 5 tentativas\n 5. Continente       - custa 7 tentativas')
@@ -3948,20 +3954,26 @@ while tentativas<=20:
                     if cor!= 'outras':
                         cores.append(cor)
             tentativas+=4
-            print('\nUma das cores da bandeira é {}'.format(random.choice(cores)))
+            cor_sorteada = random.choice(cores)
+            print('\nUma das cores da bandeira é {}'.format(cor_sorteada))
+            dicas+= 'Uma das cores da bandeira é {}'.format(cor_sorteada)
         
         if opcao == '2':
             letra_sorteada = sorteia_letra(dados_normalizados[pais_aleatorio]['capital'],lista_r)
             lista_r.append(letra_sorteada)
             tentativas+=3
             print('\nUma das letras da capital é {}'.format(letra_sorteada))
+            dicas+= 'Uma das letras da capital é {}'.format(letra_sorteada)
+
         
         if opcao == '3':
             area_pais = dados_normalizados[pais_aleatorio]['area']
             print('\nA área do país é de {} km2'.format(area_pais))
             tentativas+=3
+            dicas+= 'A área do país é de {} km2'.format(area_pais)
 
         
+    
         
 
             
