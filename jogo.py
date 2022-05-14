@@ -1,8 +1,13 @@
-#importa bibliotecas
+#importa bibliotecas e funções
 from dis import dis
 import random
 from math import *
-
+from haversine import *
+from sorteia_letra import *
+from esta_na_lista import *
+from sorteando_paises import *
+from normalizando_base import *
+from lista_ordenada import *
 
 #raio da terra
 raio_terra = 6371
@@ -3824,86 +3829,6 @@ DADOS = {
   }
 }
 
-#funções 
-
-
-def adiciona_em_ordem(pais,dist,lista):
-    novo_pais = [pais,dist]
-    nova_lista = []
-
-    if pais in lista:
-        return lista
-    
-    i = 0
-    j= 0
-
-    while i<len(lista):
-        if novo_pais[1]< lista[i][1] and j == 0:
-            nova_lista.append(novo_pais)
-            j= 1
-        else:
-            nova_lista.append(lista[i])
-            i+=1
-    if j == 0:
-        nova_lista.append(novo_pais)
-    return nova_lista
-
-def haversine(r,sig1,lamb1,sig2,lamb2):
-    sig1_rad = radians(sig1)
-    sig2_rad = radians(sig2)
-    lamb1_rad = radians(lamb1)
-    lamb2_rad = radians(lamb2)
-    
-    p0 = (sin((sig2_rad-sig1_rad)/2))*(sin((sig2_rad-sig1_rad)/2))
-    p1 = (sin((lamb2_rad-lamb1_rad)/2))*(sin((lamb2_rad-lamb1_rad)/2))
-    p2 = cos(sig1_rad)*cos(sig2_rad)*p1
-    p3 = (p0+p2)**0.5
-    d = 2*r*asin(p3)
-    return d
-
-def esta_na_lista(pais,lista):
-    nova_lista = []
-    i=0
-    while i < len(lista):
-        if pais == lista[i][0]:
-            nova_lista.append(lista[i])
-        i+=1
-    
-    if len(nova_lista) == 1:
-        return True
-    if len(nova_lista) == 0:
-        return False
-
-def normaliza(dicionario):
-    new_dic = {}
-    for cont,info in dicionario.items():
-        for chaves, dados in info.items():
-            new_dic[chaves] = dados
-            dados['continente'] = cont       
-    return new_dic
-
-def sorteia_pais(dicionario):
-    lista_paises = []
-    for paises in dicionario.keys():
-        lista_paises.append(paises)
-    
-    pais = random.choice(lista_paises)
-
-    return pais
-
-def sorteia_letra(string,lista):
-
-    lista_sorteavel = [] 
-    for caractere in string:
-        if caractere not in lista:
-            lista_sorteavel.append(caractere)
-
-    if len(lista_sorteavel) == 0:
-        return ''
-
-    sorteio = random.choice(lista_sorteavel)
-
-    return sorteio
 
 
 #Dados por país-normalizados
@@ -3916,33 +3841,44 @@ tentativas = 0
 dicas = 'Dicas:\n'
 cores = []
 lista_r = []
+ja_foi = []
 while tentativas<=20:
     palpites = str(input('\nQual o seu palpite? \n'))
 
-    if palpites != 'dica' and palpites!= 'desisto' and palpites!='ínventario':
+    if palpites != 'dica' and palpites!= 'desisto' and palpites!='ínventario' and palpites in dados_normalizados:
         lat1 = float(dados_normalizados[palpites]['geo']['latitude'])
         long1 = float(dados_normalizados[palpites]['geo']['longitude'])
         lat2 = float(dados_normalizados[pais_aleatorio]['geo']['latitude'])
         long2 = float(dados_normalizados[pais_aleatorio]['geo']['longitude'])
         dist_paises = haversine(raio_terra,lat1,long1,lat2,long2)
+        
+
         if dist_paises == 0:
             print('Parabéns você acertou!')
             break
+
+        elif palpites in ja_foi:
+            print('Esse já foi!')
+        
         else:
             tent_ant += '{} ---> {:.2f} km \n'.format(palpites,dist_paises)
             print (tent_ant)
             tentativas+=1
             print(dicas)
             print('\nVocê tem {} tentativas\n'.format(20-tentativas))
+        ja_foi.append(palpites)
 
     elif palpites == 'desisto':
-        pais_aleatorio = sorteia_pais(dados_normalizados)
-        tentativas = 0
-        tent_ant = '\nDistâncias:\n'
-        dicas = 'Dicas:\n'
-        cores = []
-        lista_r = []
-        print('\nMais sorte da próxima vez')
+        cert = str(input('Tem certeza que deseja desistir? [s|n]'))
+        if cert == 's':
+            tentativas = 0
+            tent_ant = '\nDistâncias:\n'
+            dicas = 'Dicas:\n'
+            cores = []
+            lista_r = []
+            print('\nPra que desistir? O país era {}'.format(pais_aleatorio))
+            pais_aleatorio = sorteia_pais(dados_normalizados)
+            ja_foi = []
 
     elif palpites == 'dica':
         print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 4. População        - custa 5 tentativas\n 5. Continente       - custa 7 tentativas')
@@ -3956,23 +3892,30 @@ while tentativas<=20:
             tentativas+=4
             cor_sorteada = random.choice(cores)
             print('\nUma das cores da bandeira é {}'.format(cor_sorteada))
-            dicas+= 'Uma das cores da bandeira é {}'.format(cor_sorteada)
+            dicas+= 'Cores da bandeira: {}\n'.format(cor_sorteada)
         
         if opcao == '2':
             letra_sorteada = sorteia_letra(dados_normalizados[pais_aleatorio]['capital'],lista_r)
             lista_r.append(letra_sorteada)
             tentativas+=3
             print('\nUma das letras da capital é {}'.format(letra_sorteada))
-            dicas+= 'Uma das letras da capital é {}'.format(letra_sorteada)
+            dicas+= 'Letras da capital: {}\n'.format(letra_sorteada)
 
         
         if opcao == '3':
             area_pais = dados_normalizados[pais_aleatorio]['area']
             print('\nA área do país é de {} km2'.format(area_pais))
             tentativas+=3
-            dicas+= 'A área do país é de {} km2'.format(area_pais)
+            dicas+= 'Área: {} km2\n'.format(area_pais)
+       
 
-        
+    elif palpites == 'inventario':
+        print(tent_ant)
+        print(dicas)
+    
+    else:
+        print('País desconhecido')
+
     
         
 
