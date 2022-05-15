@@ -3855,7 +3855,7 @@ while tentativas<=20:
 
         if dist_paises == 0:
             print('Parabéns você acertou!')
-            jogar_novamente = input('Jogar novamente? [s/n]')~
+            jogar_novamente = input('Jogar novamente? [s/n]')
             if jogar_novamente == 's':
                 tentativas = 20
             else:
