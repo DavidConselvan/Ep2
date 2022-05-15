@@ -3843,7 +3843,7 @@ cores = []
 lista_r = []
 ja_foi = []
 mercado_dicas = 'Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 4. População        - custa 5 tentativas\n 5. Continente       - custa 7 tentativas\n 0. Sem dica'
-while tentativas<=20:
+while tentativas<20:
     palpites = str(input('\nQual o seu palpite? \n'))
 
     if palpites != 'dica' and palpites!= 'desisto' and palpites!='ínventario' and palpites in dados_normalizados:
@@ -3947,7 +3947,7 @@ while tentativas<=20:
     else:
         print('País desconhecido') 
 
-    if tentativas == 20:
+    if tentativas == 19:
       print('Você perdeu, o país era: {}'.format(pais_aleatorio))
       tent_ant = '\nDistâncias:\n'
       dicas = 'Dicas:\n'
