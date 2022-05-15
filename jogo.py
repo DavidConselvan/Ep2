@@ -3855,7 +3855,12 @@ while tentativas<=20:
 
         if dist_paises == 0:
             print('Parabéns você acertou!')
-            break
+            jogar_novamente = input('Jogar novamente? [s/n]')~
+            if jogar_novamente == 's':
+                tentativas = 20
+            else:
+                print('Até a próxima!')
+                break
 
         elif palpites in ja_foi:
             print('Esse já foi!')
