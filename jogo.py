@@ -3947,7 +3947,7 @@ while tentativas<=20:
     else:
         print('País desconhecido') 
 
-    if tentativas == 0:
+    if tentativas == 20:
       print('Você perdeu, o país era: {}'.format(pais_aleatorio))
       tent_ant = '\nDistâncias:\n'
       dicas = 'Dicas:\n'
