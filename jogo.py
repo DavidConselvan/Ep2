@@ -3845,6 +3845,7 @@ ja_foi = []
 comandos = 'Comandos:\n   dica        -entra no mercado de dicas\n   desisto     -desiste da rodada\n   inventario  -exibe sua posição\n'
 mercado_dicas = 'Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 4. População        - custa 5 tentativas\n 5. Continente       - custa 7 tentativas\n 0. Sem dica'
 print(comandos)
+lista_dicas = []
 while tentativas<20:
     
     palpites = str(input('\nQual o seu palpite? \n'))
@@ -3865,6 +3866,7 @@ while tentativas<20:
             lista_r = []
             pais_aleatorio = sorteia_pais(dados_normalizados)
             ja_foi = []
+            lista_dicas = []
             jogar_novamente = input('Jogar novamente? [s/n]')
             if jogar_novamente == 's':
               tentativas = 0
@@ -3905,6 +3907,7 @@ while tentativas<20:
             print(Fore.RED+'\nPra que desistir? O país era {}'.format(pais_aleatorio)+Style.RESET_ALL)
             pais_aleatorio = sorteia_pais(dados_normalizados)
             ja_foi = []
+            lista_dicas = []
 
             jogar_novamente = input('Jogar novamente? [s/n]')
             if jogar_novamente == 's':
@@ -3912,10 +3915,77 @@ while tentativas<20:
             if jogar_novamente == 'n':
                 print('Até a próxima!')
                 break
-
+  
     elif palpites == 'dica':
-        print(mercado_dicas)
-        opcao = str(input('\nEscolha sua opção [0|1|2|3|4|5]: '))
+
+        if 20 - tentativas > 3 and 20 - tentativas <= 4:
+            print('Mercado de dicas:\n 2. Letra da capital - custa 3 tentativas\n 0. Sem dica')
+            opcao = str(input('\nEscolha sua opção [0|2]: '))
+
+        if 20 - tentativas > 4 and 20 - tentativas <= 5:
+            print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 0. Sem dica')
+            opcao = str(input('\nEscolha sua opção [0|1|2]: '))
+        
+        if 20 - tentativas > 5 and 20 - tentativas <= 6:
+            if '4' in lista_dicas:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2]: '))
+            else:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 4. População        - custa 5 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2|4]: '))
+        
+        if 20 - tentativas > 6 and 20 - tentativas <= 7:
+            if '3' in lista_dicas and '4' in lista_dicas:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2]: '))
+
+            elif '3' in lista_dicas and '4' not in lista_dicas:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 4. População        - custa 5 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2|4]: '))
+
+            elif '3' not in lista_dicas and '4' in lista_dicas:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2|3]: '))
+
+            else:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 4. População        - custa 5 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2|3|4]: '))
+        
+        if 20 - tentativas > 7:
+            if '3' in lista_dicas and '4' in lista_dicas and '5' in lista_dicas:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2]: '))
+
+            elif '3' in lista_dicas and '4' in lista_dicas and '5' not in lista_dicas:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 5. Continente       - custa 7 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2|5]: '))
+
+            elif '3' in lista_dicas and '4' not in lista_dicas and '5' in lista_dicas:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 4. População        - custa 5 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2|4]: '))
+
+            elif '3' not in lista_dicas and '4' in lista_dicas and '5' in lista_dicas:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2|3]: '))
+
+            elif '3' not in lista_dicas and '4' not in lista_dicas and '5' in lista_dicas:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 4. População        - custa 5 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2|3|4]: '))
+
+            elif '3' in lista_dicas and '4' not in lista_dicas and '5' not in lista_dicas:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 4. População        - custa 5 tentativas\n 5. Continente       - custa 7 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2|4|5]: '))
+
+            elif '3' not in lista_dicas and '4' in lista_dicas and '5' not in lista_dicas:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 5. Continente       - custa 7 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2|3|5]: '))
+
+            else:
+                print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 4. População        - custa 5 tentativas\n 5. Continente       - custa 7 tentativas\n 0. Sem dica')
+                opcao = str(input('\nEscolha sua opção [0|1|2|3|4|5]: '))
+        
+        if 20 - tentativas < 4:
+            print('Suas dicas acabaram! :(')
 
         if opcao == '1':
             for cor,codigo in dados_normalizados[pais_aleatorio]['bandeira'].items():
@@ -3940,18 +4010,21 @@ while tentativas<20:
             print(Fore.YELLOW+'\nA área do país é de {} km2'.format(area_pais)+Style.RESET_ALL)
             tentativas+=3
             dicas+= 'Área: {} km2\n'.format(area_pais)
+            lista_dicas.append(opcao)
         
         if opcao == '4':
             pop_pais =  dados_normalizados[pais_aleatorio]['populacao']
             print(Fore.YELLOW+'\nA população do país é de {}'.format(pop_pais)+Style.RESET_ALL)
             tentativas+=5
             dicas+= 'A população do país é de {}\n'.format(pop_pais)
+            lista_dicas.append(opcao)
 
         if opcao == '5':
             cont_pais = dados_normalizados[pais_aleatorio]['continente']
             print(Fore.YELLOW+'\nO continente do país é {}'.format(cont_pais)+Style.RESET_ALL)
             tentativas+=7
-            dicas+= 'O continente do país é {}\n'.format(cont_pais)  
+            dicas+= 'O continente do país é {}\n'.format(cont_pais)
+            lista_dicas.append(opcao)  
         
         if tentativas<=5:
             print(Fore.GREEN+'\nVocê tem {} tentativas\n'.format(20-tentativas)+Style.RESET_ALL)
@@ -3977,6 +4050,7 @@ while tentativas<20:
       lista_r = []
       pais_aleatorio = sorteia_pais(dados_normalizados)
       ja_foi = []
+      lista_dicas = []
 
       jogar_novamente = input('Jogar novamente? [s/n]')
       if jogar_novamente == 's':
