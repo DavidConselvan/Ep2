@@ -3924,32 +3924,32 @@ while tentativas<= 20:
                         cores.append(cor)
             tentativas+=4
             cor_sorteada = random.choice(cores)
-            print('\nUma das cores da bandeira é {}'.format(cor_sorteada))
+            print(Fore.YELLOW+'\nUma das cores da bandeira é {}'.format(cor_sorteada)+Style.RESET_ALL)
             dicas+= 'Cores da bandeira: {}\n'.format(cor_sorteada)
         
         if opcao == '2':
             letra_sorteada = sorteia_letra(dados_normalizados[pais_aleatorio]['capital'],lista_r)
             lista_r.append(letra_sorteada)
             tentativas+=3
-            print('\nUma das letras da capital é {}'.format(letra_sorteada))
+            print(Fore.YELLOW+'\nUma das letras da capital é {}'.format(letra_sorteada)+Style.RESET_ALL)
             dicas+= 'Letras da capital: {}\n'.format(letra_sorteada)
 
         
         if opcao == '3':
             area_pais = dados_normalizados[pais_aleatorio]['area']
-            print('\nA área do país é de {} km2'.format(area_pais))
+            print(Fore.YELLOW+'\nA área do país é de {} km2'.format(area_pais)+Style.RESET_ALL)
             tentativas+=3
             dicas+= 'Área: {} km2\n'.format(area_pais)
         
         if opcao == '4':
             pop_pais =  dados_normalizados[pais_aleatorio]['populacao']
-            print('\nA população do país é de {}'.format(pop_pais))
+            print(Fore.YELLOW+'\nA população do país é de {}'.format(pop_pais)+Style.RESET_ALL)
             tentativas+=5
             dicas+= 'A população do país é de {}\n'.format(pop_pais)
 
         if opcao == '5':
             cont_pais = dados_normalizados[pais_aleatorio]['continente']
-            print('\nO continente do país é {}'.format(cont_pais))
+            print(Fore.YELLOW+'\nO continente do país é {}'.format(cont_pais)+Style.RESET_ALL)
             tentativas+=7
             dicas+= 'O continente do país é {}\n'.format(cont_pais)  
         
