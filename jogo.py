@@ -3907,6 +3907,12 @@ while tentativas<=20:
             print('\nA área do país é de {} km2'.format(area_pais))
             tentativas+=3
             dicas+= 'Área: {} km2\n'.format(area_pais)
+        
+        if opcao == '4':
+            pop_pais =  dados_normalizados[pais_aleatorio]['populacao']
+            print('\nA população do país é de {}'.format(pop_pais))
+            tentativas+=5
+            dicas+= 'A população do país é de {}\n'.format(pop_pais)
        
 
     elif palpites == 'inventario':
