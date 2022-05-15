@@ -3902,7 +3902,7 @@ while tentativas<20:
             dicas = 'Dicas:\n'
             cores = []
             lista_r = []
-            print('\nPra que desistir? O país era {}'.format(pais_aleatorio))
+            print(Fore.RED+'\nPra que desistir? O país era {}'.format(pais_aleatorio)+Style.RESET_ALL)
             pais_aleatorio = sorteia_pais(dados_normalizados)
             ja_foi = []
 
