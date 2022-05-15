@@ -8,7 +8,7 @@ from esta_na_lista import *
 from sorteando_paises import *
 from normalizando_base import *
 from lista_ordenada import *
-
+from colorama import Fore, Back, Style
 #raio da terra
 raio_terra = 6371
 
@@ -3858,7 +3858,7 @@ while tentativas<= 20:
         
 
         if dist_paises == 0:
-            print('Parabéns você acertou!')
+            print('{colorama.Fore.GREEN}Parabéns você acertou!{Style.RESET_ALL}')
             tent_ant = '\nDistâncias:\n'
             dicas = 'Dicas:\n'
             cores = []
@@ -3876,7 +3876,14 @@ while tentativas<= 20:
             print('Esse já foi!')
         
         else:
-            tent_ant += '{} ---> {:.2f} km \n'.format(palpites,dist_paises)
+            if dist_paises<=1500:
+                tent_ant += Fore.RED+ '{} ---> {:.2f} km \n'.format(palpites,dist_paises)+Style.RESET_ALL
+            elif dist_paises>1500 and dist_paises<=5000:
+                tent_ant += Fore.YELLOW + '{} ---> {:.2f} km \n'.format(palpites,dist_paises) +Style.RESET_ALL
+            elif dist_paises>5000 and dist_paises<=10000:
+                tent_ant += Fore.GREEN+'{} ---> {:.2f} km \n'.format(palpites,dist_paises)+Style.RESET_ALL
+            else:
+                tent_ant += Fore.WHITE+'{} ---> {:.2f} km \n'.format(palpites,dist_paises)+Style.RESET_ALL
             print (tent_ant)
             tentativas+=1
             print(dicas)
