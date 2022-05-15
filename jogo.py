@@ -3887,7 +3887,12 @@ while tentativas<= 20:
             print (tent_ant)
             tentativas+=1
             print(dicas)
-            print('\nVocê tem {} tentativas\n'.format(20-tentativas))
+            if tentativas<=5:
+                print(Fore.GREEN+'\nVocê tem {} tentativas\n'.format(20-tentativas)+Style.RESET_ALL)
+            elif tentativas>=5 and tentativas<10:
+                print(Fore.YELLOW+'\nVocê tem {} tentativas\n'.format(20-tentativas)+Style.RESET_ALL)
+            else:
+                print(Fore.RED+'\nVocê tem {} tentativas\n'.format(20-tentativas)+Style.RESET_ALL)
         ja_foi.append(palpites)
 
     elif palpites == 'desisto':
@@ -3948,7 +3953,14 @@ while tentativas<= 20:
             tentativas+=7
             dicas+= 'O continente do país é {}\n'.format(cont_pais)  
         
-        print('\nVocê tem {} tentativas\n'.format(20-tentativas))
+        if tentativas<=5:
+            print(Fore.GREEN+'\nVocê tem {} tentativas\n'.format(20-tentativas)+Style.RESET_ALL)
+        elif tentativas>=5 and tentativas<15:
+            print(Fore.YELLOW+'\nVocê tem {} tentativas\n'.format(20-tentativas)+Style.RESET_ALL)
+        else:
+            print(Fore.RED+'\nVocê tem {} tentativas\n'.format(20-tentativas)+Style.RESET_ALL)
+        ja_foi.append(palpites)
+
 
     elif palpites == 'inventario':
         print(tent_ant)
