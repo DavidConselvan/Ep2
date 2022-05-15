@@ -3918,16 +3918,28 @@ while tentativas<=20:
             cont_pais = dados_normalizados[pais_aleatorio]['continente']
             print('\nO continente do país é {}'.format(cont_pais))
             tentativas+=7
-            dicas+= 'O continente do país é {}\n'.format(cont_pais)
+            dicas+= 'O continente do país é {}\n'.format(cont_pais)  
         
-        print('\nVocê ainda tem {} tentativas'.format(20-tentativas))  
+        print('\nVocê tem {} tentativas\n'.format(20-tentativas))
 
     elif palpites == 'inventario':
         print(tent_ant)
         print(dicas)
     
     else:
-        print('País desconhecido')
+        print('País desconhecido') 
+
+    if tentativas == 0:
+      print('Você perdeu, o país era: {}'.format(pais_aleatorio))
+      jogar_novamente = input('Jogar novamente? [s/n]')
+      if jogar_novamente == 's':
+        tentativas = 20
+      else:
+        print('Até a próxima!')
+        break
+
+
+  
 
     
         
