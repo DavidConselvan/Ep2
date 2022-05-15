@@ -3984,8 +3984,10 @@ while tentativas<20:
                 print('Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 4. População        - custa 5 tentativas\n 5. Continente       - custa 7 tentativas\n 0. Sem dica')
                 opcao = str(input('\nEscolha sua opção [0|1|2|3|4|5]: '))
         
-        if 20 - tentativas < 4:
-            print('Suas dicas acabaram! :(')
+        if (20-tentativas)<=3:
+            print(Fore.YELLOW+'\nSuas dicas acabaram! :(\n'+Style.RESET_ALL)
+            print('Mercado de dicas:\n 0. Sem dica\n')
+            opcao = str(input('\nEscolha sua opção [0|: '))
 
         if opcao == '1':
             for cor,codigo in dados_normalizados[pais_aleatorio]['bandeira'].items():
