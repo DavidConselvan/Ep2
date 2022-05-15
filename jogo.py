@@ -3858,7 +3858,7 @@ while tentativas<20:
         
 
         if dist_paises == 0:
-            print('{colorama.Fore.GREEN}Parabéns você acertou!{Style.RESET_ALL}')
+            print(Fore.GREEN+'Parabéns você acertou!'+Style.RESET_ALL)
             tent_ant = '\nDistâncias:\n'
             dicas = 'Dicas:\n'
             cores = []
