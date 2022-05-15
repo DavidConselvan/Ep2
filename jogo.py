@@ -3856,7 +3856,6 @@ while tentativas<=20:
 
         if dist_paises == 0:
             print('Parabéns você acertou!')
-            tentativas = 0
             tent_ant = '\nDistâncias:\n'
             dicas = 'Dicas:\n'
             cores = []
@@ -3865,8 +3864,8 @@ while tentativas<=20:
             ja_foi = []
             jogar_novamente = input('Jogar novamente? [s/n]')
             if jogar_novamente == 's':
-                tentativas = 20
-            else:
+              tentativas = 0
+            if jogar_novamente == 'n':
                 print('Até a próxima!')
                 break
 
@@ -3884,7 +3883,6 @@ while tentativas<=20:
     elif palpites == 'desisto':
         cert = str(input('Tem certeza que deseja desistir? [s|n]'))
         if cert == 's':
-            tentativas = 0
             tent_ant = '\nDistâncias:\n'
             dicas = 'Dicas:\n'
             cores = []
@@ -3895,8 +3893,8 @@ while tentativas<=20:
 
             jogar_novamente = input('Jogar novamente? [s/n]')
             if jogar_novamente == 's':
-                tentativas = 20
-            else:
+              tentativas = 0
+            if jogar_novamente == 'n':
                 print('Até a próxima!')
                 break
 
@@ -3960,8 +3958,8 @@ while tentativas<=20:
 
       jogar_novamente = input('Jogar novamente? [s/n]')
       if jogar_novamente == 's':
-        tentativas = 20
-      else:
+        tentativas = 0
+      if jogar_novamente == 'n':
         print('Até a próxima!')
         break
 
