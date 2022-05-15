@@ -3856,6 +3856,13 @@ while tentativas<=20:
 
         if dist_paises == 0:
             print('Parabéns você acertou!')
+            tentativas = 0
+            tent_ant = '\nDistâncias:\n'
+            dicas = 'Dicas:\n'
+            cores = []
+            lista_r = []
+            pais_aleatorio = sorteia_pais(dados_normalizados)
+            ja_foi = []
             jogar_novamente = input('Jogar novamente? [s/n]')
             if jogar_novamente == 's':
                 tentativas = 20
@@ -3885,7 +3892,7 @@ while tentativas<=20:
             print('\nPra que desistir? O país era {}'.format(pais_aleatorio))
             pais_aleatorio = sorteia_pais(dados_normalizados)
             ja_foi = []
-            
+
             jogar_novamente = input('Jogar novamente? [s/n]')
             if jogar_novamente == 's':
                 tentativas = 20
@@ -3944,6 +3951,13 @@ while tentativas<=20:
 
     if tentativas == 0:
       print('Você perdeu, o país era: {}'.format(pais_aleatorio))
+      tent_ant = '\nDistâncias:\n'
+      dicas = 'Dicas:\n'
+      cores = []
+      lista_r = []
+      pais_aleatorio = sorteia_pais(dados_normalizados)
+      ja_foi = []
+
       jogar_novamente = input('Jogar novamente? [s/n]')
       if jogar_novamente == 's':
         tentativas = 20
