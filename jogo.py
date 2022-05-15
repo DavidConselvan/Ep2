@@ -3845,7 +3845,7 @@ ja_foi = []
 comandos = 'Comandos:\n   dica        -entra no mercado de dicas\n   desisto     -desiste da rodada\n   inventario  -exibe sua posição\n'
 mercado_dicas = 'Mercado de dicas:\n 1. Cor da bandeira  - custa 4 tentativas\n 2. Letra da capital - custa 3 tentativas\n 3. Área             - custa 6 tentativas\n 4. População        - custa 5 tentativas\n 5. Continente       - custa 7 tentativas\n 0. Sem dica'
 print(comandos)
-while tentativas<= 20:
+while tentativas<20:
     
     palpites = str(input('\nQual o seu palpite? \n'))
 
@@ -3889,7 +3889,7 @@ while tentativas<= 20:
             print(dicas)
             if tentativas<=5:
                 print(Fore.GREEN+'\nVocê tem {} tentativas\n'.format(20-tentativas)+Style.RESET_ALL)
-            elif tentativas>=5 and tentativas<10:
+            elif tentativas>=5 and tentativas<15:
                 print(Fore.YELLOW+'\nVocê tem {} tentativas\n'.format(20-tentativas)+Style.RESET_ALL)
             else:
                 print(Fore.RED+'\nVocê tem {} tentativas\n'.format(20-tentativas)+Style.RESET_ALL)
@@ -3969,8 +3969,8 @@ while tentativas<= 20:
     else:
         print('País desconhecido') 
 
-    if tentativas > 20:
-      print('Você perdeu, o país era: {}'.format(pais_aleatorio))
+    if tentativas >= 20:
+      print(Fore.RED+'Você perdeu, o país era: {}'.format(pais_aleatorio)+Style.RESET_ALL)
       tent_ant = '\nDistâncias:\n'
       dicas = 'Dicas:\n'
       cores = []
